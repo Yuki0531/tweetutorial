@@ -12,17 +12,15 @@
         <%= @post.created_at %>
       </div>
       <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
-       <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) %>
-               <span class="fa fa-heart like-btn"></span>
-      <% end %>
+        <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn-unlike"></span>
+        <% end %>
       <% else %>
-
-        <!-- Rewrite the following line to a link to the "create" action -->
-        <%= link_to("/likes/#{@post.id}/create",{method:"post"}) %>
+        <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+          <span class="fa fa-heart like-btn"></span>
+        <% end %>
       <% end %>
-      <% end %>
-            <%= @likes_count %>
-
+      <%= @likes_count %>
       <% if @post.user_id == @current_user.id %>
         <div class="post-menus">
           <%= link_to("Edit", "/posts/#{@post.id}/edit") %>
